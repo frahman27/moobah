@@ -76,4 +76,60 @@
 </head>
 <body>
   <!-- Main Heading Text -->
-  <h1>🐄 Moo-bahh! Good Luck, [Your Friend's Name]! 🐄
+  <h1>🐄 Moo-bahh! Good Luck, [Your Friend's Name]! 🐄</h1>
+
+  <!-- Main Image (your cow image) -->
+  <img src="https://raw.githubusercontent.com/frahman27/moobah/main/images/cow.jpg" alt="Cute Cow" class="cow-img" onclick="playMoo()">
+
+  <p>Don't fuck up the formulas! 🌸</p>
+
+  <button class="quote-btn" onclick="showQuote()">Get a Good Luck Quote</button>
+  <p id="quote"></p>
+
+  <audio id="mooSound" src="https://www.soundjay.com/animal/cow-moo1.mp3" preload="auto"></audio>
+
+  <script>
+    const quotes = [
+      "You’ve got this! Maybe lol 💪",
+      "Believe in yourself or sth ✨",
+      "A+ moo-ment is loading...",
+      "Trust the cow-culation 🧮🐄",
+      "It's udderly going to be fine!"
+    ];
+
+    function showQuote() {
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('quote').textContent = random;
+      spawnHeart();
+    }
+
+    function playMoo() {
+      document.getElementById('mooSound').play();
+    }
+
+    function spawnHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+
+    // Floating cow emojis
+    function spawnFloatingCow() {
+      const cow = document.createElement('div');
+      cow.classList.add('floating-cow');
+      cow.textContent = '🐄';
+      cow.style.left = Math.random() * 100 + 'vw';
+      cow.style.top = '100vh';
+      cow.style.fontSize = (Math.random() * 1.5 + 1.2) + 'rem';
+      document.body.appendChild(cow);
+      setTimeout(() => cow.remove(), 10000);
+    }
+
+    setInterval(spawnFloatingCow, 1500);
+  </script>
+</body>
+</html>

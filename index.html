@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moo-d of Good Luck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff7f0;
+      font-family: 'Fredoka One', cursive;
+      color: #5c4033;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      margin-top: 1em;
+    }
+    .cow-img {
+      width: 200px;
+      transition: transform 0.3s ease;
+    }
+    .cow-img:hover {
+      transform: rotate(10deg) scale(1.1);
+    }
+    .heart {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      font-size: 2em;
+      color: #ff69b4;
+      animation: float 2s ease-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -200%) scale(1.5); opacity: 0; }
+    }
+    .quote-btn {
+      margin-top: 2em;
+      padding: 1em 2em;
+      font-size: 1em;
+      border: none;
+      border-radius: 12px;
+      background-color: #ffdde1;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐄 Moo-ds of Good Luck!</h1>
+  <img src="https://i.imgur.com/JYy0U.png" alt="Cute Cow" class="cow-img" onclick="playMoo()">
+  <p>Dear Friend, sending you a whole field of good luck! 🌸</p>
+
+  <button class="quote-btn" onclick="showQuote()">Get a Good Luck Quote</button>
+  <p id="quote"></p>
+
+  <audio id="mooSound" src="https://www.soundjay.com/animal/cow-moo1.mp3" preload="auto"></audio>
+
+  <script>
+    const quotes = [
+      "You’ve got this! 💪",
+      "Believe in yourself! ✨",
+      "You're udderly amazing! 🐮",
+      "Luck is on your side! 🍀",
+      "Keep going, friend! 💖"
+    ];
+
+    function showQuote() {
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('quote').textContent = random;
+      spawnHeart();
+    }
+
+    function playMoo() {
+      document.getElementById('mooSound').play();
+    }
+
+    function spawnHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+  </script>
+</body>
+</html>

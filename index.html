@@ -2,40 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><!-- 💡 Page Title -->
-    Moo-bahh, good luck!! :)
-  </title>
+  <title>Moo-bahh, good luck!! :)</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-background: repeating-linear-gradient(
-  45deg,
-  #fff7f0,
-  #fff7f0 40px,
-  #fff1e6 40px,
-  #fff1e6 80px
-), 
-url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='40'%20height='40'%3E%3Ctext%20y='32'%20font-size='32'%3E%F0%9F%90%84%3C/text%3E%3C/svg%3E") repeat;
-
-
+      background: #fff7f0;
       font-family: 'Fredoka One', cursive;
       color: #5c4033;
       text-align: center;
       overflow-x: hidden;
+      position: relative;
     }
+
     h1 {
       font-size: 3em;
       margin-top: 1em;
     }
+
     .cow-img {
       width: 200px;
       transition: transform 0.3s ease;
     }
+
     .cow-img:hover {
       transform: rotate(10deg) scale(1.1);
     }
+
     .heart {
       position: fixed;
       top: 50%;
@@ -44,10 +38,12 @@ url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='40'
       color: #ff69b4;
       animation: float 2s ease-out infinite;
     }
+
     @keyframes float {
       0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
       100% { transform: translate(-50%, -200%) scale(1.5); opacity: 0; }
     }
+
     .quote-btn {
       margin-top: 2em;
       padding: 1em 2em;
@@ -56,6 +52,25 @@ url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='40'
       border-radius: 12px;
       background-color: #ffdde1;
       cursor: pointer;
+    }
+
+    /* Floating cow emojis */
+    .floating-cow {
+      position: fixed;
+      animation: floatCow 10s linear forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatCow {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -73,6 +88,9 @@ url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='40'
     const quotes = [
       "You’ve got this! Maybe lol 💪",
       "Believe in yourself or sth ✨",
+      "A+ moo-ment is loading...",
+      "Trust the cow-culation 🧮🐄",
+      "It's udderly going to be fine!"
     ];
 
     function showQuote() {
@@ -94,6 +112,20 @@ url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='40'
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 2000);
     }
+
+    // Floating cow emojis
+    function spawnFloatingCow() {
+      const cow = document.createElement('div');
+      cow.classList.add('floating-cow');
+      cow.textContent = '🐄';
+      cow.style.left = Math.random() * 100 + 'vw';
+      cow.style.top = '100vh';
+      cow.style.fontSize = (Math.random() * 1.5 + 1.2) + 'rem';
+      document.body.appendChild(cow);
+      setTimeout(() => cow.remove(), 10000);
+    }
+
+    setInterval(spawnFloatingCow, 1500);
   </script>
 </body>
 </html>
